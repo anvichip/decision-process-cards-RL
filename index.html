@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision-Process Cards: Rethinking How RL Claims Are Reported</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE3;
+    --card:#FBF9F3;
+    --ink:#211F1A;
+    --muted:#6B6656;
+    --rule:#C9BD9C;
+    --accent:#A23B2E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:4.5rem 1.5rem 5rem;}
+  header.hero{margin-bottom:3rem;}
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.02em;
+    color:var(--accent);
+    margin:0 0 0.9rem;
+  }
+  h1{
+    font-size:2.1rem;
+    line-height:1.28;
+    font-weight:700;
+    margin:0 0 1.4rem;
+    max-width:22ch;
+  }
+  .authors{font-size:1.02rem; margin:0 0 0.6rem; color:var(--ink);}
+  .authors sup{font-size:0.7em; color:var(--accent);}
+  .affils{
+    font-size:0.88rem;
+    color:var(--muted);
+    margin:0 0 1.8rem;
+  }
+  .affils div{margin:0.15rem 0;}
+  .affils sup{color:var(--accent); margin-right:0.15rem;}
+  .actions{display:flex; gap:0.7rem; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    padding:0.55rem 1rem;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    text-decoration:none;
+    background:transparent;
+    cursor:pointer;
+    border-radius:2px;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper);}
+  .btn.primary{background:var(--ink); color:var(--paper);}
+  .btn.primary:hover{background:var(--accent); border-color:var(--accent); color:var(--paper);}
+
+  hr{border:none; border-top:1px solid var(--rule); margin:2.6rem 0;}
+
+  section h2{
+    font-size:1.15rem;
+    margin:0 0 1rem;
+    font-weight:600;
+  }
+  .abstract p{font-size:1.02rem; max-width:70ch;}
+
+  .fields{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    border-top:1px solid var(--rule);
+  }
+  .field{
+    display:grid;
+    grid-template-columns:190px 1fr;
+    gap:1.2rem;
+    padding:0.95rem 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .field .key{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--accent);
+    padding-top:0.15rem;
+  }
+  .field .val{font-size:0.97rem; color:var(--ink);}
+  .note{
+    font-size:0.9rem;
+    color:var(--muted);
+    margin-top:1.1rem;
+  }
+
+  .cite-box{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:3px;
+    padding:1.1rem 1.2rem;
+    position:relative;
+  }
+  .cite-box pre{
+    margin:0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    line-height:1.55;
+    white-space:pre-wrap;
+    word-break:break-word;
+    color:var(--ink);
+  }
+  .copy-btn{
+    position:absolute;
+    top:0.7rem;
+    right:0.7rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    border:1px solid var(--rule);
+    background:var(--paper);
+    color:var(--muted);
+    padding:0.3rem 0.55rem;
+    cursor:pointer;
+    border-radius:2px;
+  }
+  .copy-btn:hover{border-color:var(--ink); color:var(--ink);}
+
+  footer{
+    margin-top:3rem;
+    font-size:0.85rem;
+    color:var(--muted);
+  }
+
+  @media (max-width:520px){
+    .wrap{padding:3rem 1.2rem 3.5rem;}
+    h1{font-size:1.65rem;}
+    .field{grid-template-columns:1fr; gap:0.25rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Position paper</p>
+    <h1>Decision-Process Cards: Rethinking How RL Claims Are Reported</h1>
+    <p class="authors">
+      Anvi Kohli<sup>1</sup>, Vedant Khandelwal<sup>1</sup>, Rishit Agrawal<sup>1</sup>, Rahul Maity<sup>1</sup>, Amit Sheth<sup>1,2</sup>
+    </p>
+    <div class="affils">
+      <div><sup>1</sup>AI Institute, University of South Carolina, USA</div>
+      <div><sup>2</sup>Indian AI Research Organization (IAIRO), India</div>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="#" title="Add your paper/DOI link here">Paper</a>
+      <!-- <a class="btn" href="#" title="Add a link to code or DPC templates if released">Code</a> -->
+      <a class="btn" href="#citation">BibTeX</a>
+      <a class="btn" href="examples.html">Examples</a>
+    </div>
+  </header>
+
+  <hr>
+
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>
+      Reinforcement Learning is now a central label in LLM post-training, reasoning, and agent research, yet reward gains alone do not identify the decision process being improved. RL means different things in different large language model (LLM) studies, and ambiguity makes it difficult to evaluate what a reported improvement actually demonstrates. The same terms can refer to fixed-data preference fitting, learned-reward optimization, verifiable-reward RL, inference-time search, tool-mediated control, or deployed policy adaptation, each supporting different scientific conclusions.
+    </p>
+    <p>
+      We argue that papers applying RL to LLMs should include Decision-Process Cards (DPC), a tiered, claim-level report of the state or belief, action granularity, reward and cost source, support assumptions, value or uncertainty object, model interface, and adaptation surface underlying the claim. The DPC is a claim-ceiling device, not a requirement that every paper address every RL challenge. Completion-only preference papers require different evidence than RLVR systems, tool-using agents, or deployed adaptive agents.
+    </p>
+    <p>
+      Our review suggests that the evidence does not support the claim that language-model RL is shallow. Instead, it points to substantial progress across multiple settings whose boundaries, assumptions, and evidentiary standards remain weakly standardized. Making DPC fields explicit would allow reviewers and readers to ask what was optimized, under what data support, with which reward or verifier validity, under which constraints, and across which adaptation surface.
+    </p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>The nine fields of a Decision-Process Card</h2>
+    <div class="fields">
+      <div class="field"><div class="key">Claim tier</div><div class="val">Prevents one-shot response tuning from be- ing read as agentic control</div></div>
+      <div class="field"><div class="key">State or belief</div><div class="val">Separates completion MDPs from POMDP control and personalization</div></div>
+      <div class="field"><div class="key">Action granularity and horizon</div><div class="val">Exposes whether credit and return seman- tics are assigned at the correct time scale</div></div>
+      <div class="field"><div class="key">Reward and cost</div><div class="val">Makes proxy validity, constraint semantics, and reward hacking inspectable</div></div>
+      <div class="field"><div class="key">Prompt/task support</div><div class="val">Prevents broad prompt coverage from stand- ing in for response or trajectory coverage</div></div>
+      <div class="field"><div class="key">Response/trajectory support</div><div class="val">Converts offline and RLVR claims into au- ditable support claims</div></div>
+      <div class="field"><div class="key">Value and uncertainty</div><div class="val">Distinguishes diversity sampling from epis- temic exploration and calibrated risk</div></div>
+      <div class="field"><div class="key">Model interface</div><div class="val">Distinguishes search over text from model- based control</div></div>
+      <div class="field"><div class="key">Adaptation surface</div><div class="val">Separates context, memory mutation, weight updates, and rollback scopes</div></div>
+    </div>
+    <p class="note">A DPC does not ask every paper to solve every RL problem — it asks each claim to state, in these nine terms, exactly which decision process it improved.</p>
+  </section>
+
+  <hr>
+
+  <section id="citation">
+    <h2>Citation</h2>
+    <div class="cite-box">
+      <button class="copy-btn" onclick="copyBib()">Copy</button>
+<pre id="bibtex">@misc{kohli2026decisionprocesscards,
+  title        = {Decision-Process Cards: Rethinking How RL Claims Are Reported},
+  author       = {Kohli, Anvi and Khandelwal, Vedant and Agrawal, Rishit and Maity, Rahul and Sheth, Amit},
+  year         = {2026},
+  note         = {Accepted position paper. Replace with venue, volume, and page details once available.},
+  howpublished = {\url{https://REPLACE-WITH-YOUR-GITHUB-USERNAME.github.io/REPLACE-WITH-REPO-NAME/}}
+}</pre>
+    </div>
+  </section>
+
+  <footer>
+    <p>Anvi Kohli, Vedant Khandelwal, Rishit Agrawal, Rahul Maity, Amit Sheth</p>
+  </footer>
+
+</div>
+
+<script>
+function copyBib(){
+  var text = document.getElementById('bibtex').innerText;
+  var btn = document.querySelector('.copy-btn');
+  function done(ok){ btn.textContent = ok ? 'Copied' : 'Copy failed'; setTimeout(function(){ btn.textContent='Copy'; }, 1500); }
+  try{
+    navigator.clipboard.writeText(text).then(function(){done(true);}, function(){done(false);});
+  }catch(e){ done(false); }
+}
+</script>
+
+</body>
+</html>
